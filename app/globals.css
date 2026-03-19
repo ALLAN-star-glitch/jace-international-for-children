@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
+/* Custom theme variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Your refined color palette - defined as CSS variables */
+  --deep-blue: #0000FF;
+  --rich-green: #009933;
+  --vibrant-pink: #FF0066;
+  --ivory: #FBF9F7;
+  --warm-sand: #F0ECE7;
+  --charcoal: #2C3E50;
+  --soft-gray: #8C9AA6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Define theme colors using @theme */
+@theme {
+  --color-deep-blue: var(--deep-blue);
+  --color-rich-green: var(--rich-green);
+  --color-vibrant-pink: var(--vibrant-pink);
+  --color-ivory: var(--ivory);
+  --color-warm-sand: var(--warm-sand);
+  --color-charcoal: var(--charcoal);
+  --color-soft-gray: var(--soft-gray);
+  
+  /* Typography */
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    background: var(--ivory);
+    color: var(--charcoal);
+    font-family: var(--font-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Elegant serif for headings */
+  h1, h2, h3, h4, .heading-serif {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utility classes */
+@layer utilities {
+  /* Container for consistent max-width */
+  .container-elegant {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-elegant {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-elegant {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Small caps utility */
+  .small-caps {
+    font-variant: all-small-caps;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    color: var(--soft-gray);
+  }
+
+  /* Elegant pink divider */
+  .divider-pink {
+    height: 1px;
+    background-color: var(--vibrant-pink);
+    opacity: 0.3;
+    width: 80px;
+  }
+
+  /* Smooth transitions */
+  .transition-elegant {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  /* Paper texture background */
+  .bg-paper-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Animation for mobile menu */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ivory: #1a1a1a;
+    --charcoal: #e5e5e5;
+    --soft-gray: #a0a0a0;
+  }
 }

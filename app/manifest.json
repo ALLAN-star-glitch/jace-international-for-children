@@ -1,0 +1,27 @@
+{
+  "name": "JACE for Children International",
+  "short_name": "JACE Children",
+  "description": "Building sustainable, family-centered care for children across Kenya",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF9F7",
+  "theme_color": "#0000FF",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
