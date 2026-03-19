@@ -56,11 +56,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "JACE for Children International",
     description: "Building sustainable, family-centered care for children across Kenya",
-    url: "https://www.jacechildren.org",
+    url: "https://jace-international-for-children.vercel.app/",
     siteName: "JACE for Children International",
     images: [
       {
-        url: "https://www.jacechildren.org/og-image.jpg",
+        url: "https://jace-international-for-children.vercel.app/_next/image?url=%2Fsocial-worker-family.png&w=1920&q=75",
         width: 1200,
         height: 630,
         alt: "JACE for Children International - Every child belongs in a family",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "JACE for Children International",
     description: "Building sustainable, family-centered care for children across Kenya",
-    images: ["https://www.jacechildren.org/twitter-image.jpg"],
+    images: ["https://jace-international-for-children.vercel.app/_next/image?url=%2Fsocial-worker-family.png&w=1920&q=75"],
     creator: "@jacechildren",
     site: "@jacechildren",
   },
