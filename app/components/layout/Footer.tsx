@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { SOCIAL_LINKS, CONTACT_INFO, NAVIGATION_ITEMS } from '../../lib/Constants';
 import Container from '@/app/components/shared/Container';
 
@@ -56,39 +57,65 @@ export default function Footer() {
 
   return (
     <footer className="relative text-white" role="contentinfo">
-      {/* Background Image with Rich Deep Blue Overlay at 92% */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/kenya-savanna-golden-hour.jpg')",
-        }}
-        aria-hidden="true"
-      >
-        <div className="absolute inset-0 bg-deep-blue opacity-92" />
-        {/* Optional subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5 bg-paper-texture" />
+      {/* Background Image Container - Using Next.js Image for optimization */}
+      <div className="absolute inset-0 overflow-hidden">
+        <Image
+          src="/kenya-savanna-golden-hour.png"
+          alt="Kenyan savanna landscape at golden hour"
+          fill
+          className="object-cover"
+          priority={false}
+          quality={85}
+          sizes="100vw"
+        />
+        
+        {/* Multi-layer gradient overlay for elegant depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/95 via-deep-blue/80 to-deep-blue/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.1),_transparent_70%)]" />
+        
+        {/* Subtle diagonal pattern overlay for texture */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              #ffffff 0px,
+              #ffffff 2px,
+              transparent 2px,
+              transparent 8px
+            )`,
+          }}
+          aria-hidden="true"
+        />
       </div>
 
       {/* Footer Content */}
-      <div className="relative pt-16 pb-8">
+      <div className="relative pt-20 pb-8 backdrop-blur-[2px]">
         <Container>
+          {/* Decorative top line */}
+          <div className="w-24 h-px bg-gradient-to-r from-vibrant-pink/50 via-rich-green/30 to-transparent mb-12" />
+          
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
             {/* Column 1: Brand - 30% width on desktop */}
             <div className="md:col-span-4 space-y-6">
-              <h3 className="font-serif text-3xl text-white/90">
-                <Link href="/" className="hover:opacity-80 transition focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm">
+              <h3 className="font-serif text-3xl text-white drop-shadow-lg">
+                <Link 
+                  href="/" 
+                  className="hover:opacity-90 transition-opacity duration-300 focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm"
+                >
                   JACE <span className="font-light">for Children</span>
                 </Link>
               </h3>
-              <p className="text-white/70 italic text-lg leading-relaxed">
+              <p className="text-white/80 italic text-lg leading-relaxed drop-shadow">
                 Every child belongs in a family.
               </p>
-              <div className="flex space-x-5 pt-2">
+              <div className="flex space-x-5 pt-4">
                 {SOCIAL_LINKS.map((social) => (
                   <a
                     key={social.platform}
                     href={social.href}
-                    className="text-white/70 hover:text-vibrant-pink transition-colors focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm p-1"
+                    className="text-white/70 hover:text-vibrant-pink transform hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm p-1"
                     aria-label={`Follow us on ${social.platform}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -101,7 +128,7 @@ export default function Footer() {
 
             {/* Column 2: Quick Links - 20% width */}
             <div className="md:col-span-2 space-y-4">
-              <h4 className="small-caps text-white/80 tracking-wider" id="footer-explore">EXPLORE</h4>
+              <h4 className="small-caps text-white/60 tracking-wider text-sm" id="footer-explore">EXPLORE</h4>
               <ul className="space-y-3" aria-labelledby="footer-explore">
                 {NAVIGATION_ITEMS.map((item) => {
                   const isActive = pathname === item.href;
@@ -110,12 +137,13 @@ export default function Footer() {
                       <Link 
                         href={item.href}
                         className={[
-                          'transition-colors focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-2 py-1 inline-block',
+                          'transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-2 py-1 inline-block relative group',
                           isActive ? 'text-white font-medium' : 'text-white/70 hover:text-white'
                         ].filter(Boolean).join(' ')}
                         aria-current={isActive ? 'page' : undefined}
                       >
                         {item.label}
+                        <span className="absolute -bottom-0.5 left-2 w-0 h-px bg-vibrant-pink/50 group-hover:w-4 transition-all duration-300" />
                       </Link>
                     </li>
                   );
@@ -125,29 +153,29 @@ export default function Footer() {
 
             {/* Column 3: Contact - 25% width */}
             <div className="md:col-span-3 space-y-4">
-              <h4 className="small-caps text-white/80 tracking-wider" id="footer-contact">CONNECT</h4>
+              <h4 className="small-caps text-white/60 tracking-wider text-sm" id="footer-contact">CONNECT</h4>
               <ul className="space-y-4" aria-labelledby="footer-contact">
-                <li className="flex items-start gap-3">
-                  <span className="text-rich-green/70 mt-0.5 flex-shrink-0" aria-hidden="true">{getIcon('location')}</span>
-                  <address className="text-white/70 not-italic">
+                <li className="flex items-start gap-3 group">
+                  <span className="text-rich-green/70 mt-0.5 flex-shrink-0 group-hover:text-rich-green transition-colors" aria-hidden="true">{getIcon('location')}</span>
+                  <address className="text-white/70 not-italic group-hover:text-white/90 transition-colors">
                     {CONTACT_INFO.address}
                   </address>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-rich-green/70 flex-shrink-0" aria-hidden="true">{getIcon('phone')}</span>
+                <li className="flex items-center gap-3 group">
+                  <span className="text-rich-green/70 flex-shrink-0 group-hover:text-rich-green transition-colors" aria-hidden="true">{getIcon('phone')}</span>
                   <a 
                     href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} 
-                    className="text-white/70 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-2 py-1"
+                    className="text-white/70 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-2 py-1"
                     aria-label="Call us"
                   >
                     {CONTACT_INFO.phone}
                   </a>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-rich-green/70 flex-shrink-0" aria-hidden="true">{getIcon('email')}</span>
+                <li className="flex items-center gap-3 group">
+                  <span className="text-rich-green/70 flex-shrink-0 group-hover:text-rich-green transition-colors" aria-hidden="true">{getIcon('email')}</span>
                   <a 
                     href={`mailto:${CONTACT_INFO.email}`} 
-                    className="text-white/70 hover:text-white transition focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-2 py-1"
+                    className="text-white/70 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-2 py-1"
                     aria-label="Email us"
                   >
                     {CONTACT_INFO.email}
@@ -158,47 +186,58 @@ export default function Footer() {
 
             {/* Column 4: Newsletter - 25% width */}
             <div className="md:col-span-3 space-y-4">
-              <h4 className="small-caps text-white/80 tracking-wider" id="footer-newsletter">UPDATE</h4>
+              <h4 className="small-caps text-white/60 tracking-wider text-sm" id="footer-newsletter">UPDATE</h4>
               <p className="text-white/70 text-sm leading-relaxed">
                 Subscribe to our newsletter for updates on our work and ways to support children in Kenya.
               </p>
-              <form onSubmit={handleSubmit} className="space-y-3" aria-labelledby="footer-newsletter">
+              <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="footer-newsletter">
                 <label htmlFor="email-input" className="sr-only">
                   Email address for newsletter
                 </label>
-                <input
-                  id="email-input"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email address"
-                  className="w-full bg-transparent border-b border-white/30 py-2 text-white placeholder-white/40 focus:outline-none focus:border-vibrant-pink transition-colors"
-                  required
-                  aria-required="true"
-                />
+                <div className="relative">
+                  <input
+                    id="email-input"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email address"
+                    className="w-full bg-transparent border-b border-white/30 py-3 text-white placeholder-white/40 focus:outline-none focus:border-vibrant-pink transition-colors duration-300 pr-8"
+                    required
+                    aria-required="true"
+                  />
+                  <div className="absolute right-0 bottom-3 w-4 h-px bg-vibrant-pink/50 opacity-0 focus-within:opacity-100 transition-opacity" />
+                </div>
+                
                 {isSubscribed && (
-                  <p className="text-rich-green text-sm animate-fadeIn" role="status">
+                  <p className="text-rich-green text-sm animate-fadeIn bg-rich-green/10 backdrop-blur-sm px-3 py-2 rounded" role="status">
                     ✓ Thank you for subscribing!
                   </p>
                 )}
+                
                 <button
                   type="submit"
-                  className="text-vibrant-pink small-caps hover:underline focus:outline-none focus:ring-2 focus:ring-vibrant-pink rounded-sm px-4 py-2"
+                  className="text-vibrant-pink small-caps text-sm hover:text-white hover:bg-vibrant-pink/20 px-4 py-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-vibrant-pink inline-flex items-center gap-2 group"
                   aria-label="Subscribe to newsletter"
                 >
                   Subscribe
+                  <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </button>
               </form>
             </div>
           </div>
 
-          {/* Copyright */}
-          <div className="border-t border-white/15 pt-8">
-            <p className="text-center text-white/50 small-caps text-xs">
-              © {currentYear} JACE for Children International. All rights reserved. 
-              <span className="block sm:inline sm:ml-2 mt-2 sm:mt-0">
-                Registered charity in Kenya.
+          {/* Copyright with elegant divider */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t border-white/10" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="bg-deep-blue/30 backdrop-blur-sm px-6 py-2 rounded-full text-white/50 small-caps text-xs border border-white/10">
+                © {currentYear} JACE for Children International. All rights reserved.
               </span>
+            </div>
+            <p className="text-center text-white/40 small-caps text-xs mt-4">
+              Registered charity in Kenya.
             </p>
           </div>
         </Container>

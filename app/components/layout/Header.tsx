@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Container from '@/app/components/shared/Container';
 import Button from '../shared/Button';
 import { NAVIGATION_ITEMS } from '../../lib/Constants';
+import Image from 'next/image';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,14 +39,18 @@ export default function Header() {
       <Container className="py-4">
         <nav className="flex items-center justify-between" aria-label="Main navigation">
           {/* Logo with semantic markup */}
-          <Link 
-            href="/" 
-            onClick={closeMobileMenu}
-            className="text-2xl font-serif text-deep-blue hover:opacity-80 transition focus:outline-none focus:ring-2 focus:ring-vibrant-pink focus:ring-offset-2 rounded-sm"
-            aria-label="JACE for Children International - Return to homepage"
-          >
-            JACE <span className="font-light">for Children</span>
-          </Link>
+        
+<Link href="/" onClick={closeMobileMenu} className="block">
+  {/* eslint-disable-next-line react/jsx-no-undef */}
+  <Image 
+    src="/logo-main.jpeg" 
+    alt="JACE for Children International" 
+    width={180} 
+    height={50}
+    className="h-10 w-auto"
+    priority
+  />
+</Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
