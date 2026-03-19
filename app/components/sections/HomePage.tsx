@@ -192,7 +192,7 @@ export default function Homepage() {
             return (
               <div key={index} className="relative aspect-square group overflow-hidden">
                 <Image
-                  src={`/images/value-${value.name.toLowerCase().replace(/\s+/g, '-')}.jpg`}
+                  src={`/value-${value.name.toLowerCase().replace(/\s+/g, '-')}.png`}
                   alt={value.imageAlt}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
