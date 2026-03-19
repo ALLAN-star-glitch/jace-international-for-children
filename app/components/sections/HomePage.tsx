@@ -224,7 +224,7 @@ export default function Homepage() {
             {/* Left Column - Map Image */}
             <div className="relative aspect-square rounded-lg overflow-hidden">
               <Image
-                src="/images/kenya-map-golden-hour.jpg"
+                src="/kenya-map-golden-hour.png"
                 alt="Artistic map of Kenya at golden hour"
                 fill
                 className="object-cover"
