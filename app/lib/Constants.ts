@@ -1,10 +1,10 @@
 // Navigation
 export const NAVIGATION_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '/about' },
-  { label: 'Our Programs', href: '/programs' },
+  { label: 'About Us', href: '/about-us' },
+  { label: 'Our Programs', href: '/our-programs' },
   { label: 'Get Involved', href: '/get-involved' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact Us', href: '/contact-us' },
 ] as const;
 
 // Counties - Base list
