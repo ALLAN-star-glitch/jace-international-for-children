@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import Header from "@/app/components/layout/Header";
 import Footer from "@/app/components/layout/Footer";
+import Script from "next/script";
 import "./globals.css";
 
 // Font optimization with display: swap for better performance
@@ -238,6 +239,7 @@ export default function RootLayout({
         {/* DNS Prefetch for external resources */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://elfsightcdn.com" />
         
         {/* Structured Data */}
         <script
@@ -266,6 +268,17 @@ export default function RootLayout({
 
         {/* Footer - appears at the bottom of every page */}
         <Footer />
+
+        {/* Elfsight WhatsApp Chat Widget */}
+        <Script 
+          src="https://elfsightcdn.com/platform.js" 
+          strategy="afterInteractive"
+          async
+        />
+        <div 
+          className="elfsight-app-cd709804-3694-4289-953e-0280ba4e4a3e" 
+          data-elfsight-app-lazy
+        />
       </body>
     </html>
   );
