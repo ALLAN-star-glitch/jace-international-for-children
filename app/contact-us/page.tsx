@@ -70,7 +70,7 @@ export default function ContactPage() {
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/contact-hero.png"
+            src="/hero-family.png"
             alt="Community gathering in Kenya, people connecting"
             fill
             className="object-cover"
@@ -154,7 +154,7 @@ export default function ContactPage() {
             <div className="relative rounded-lg overflow-hidden sticky top-24">
               <div className="aspect-[4/5] relative">
                 <Image
-                  src="/contact-form.png"
+                  src="/hero-family.png"
                   alt="Person writing a letter, thoughtful and focused"
                   fill
                   className="object-cover"
@@ -210,7 +210,7 @@ export default function ContactPage() {
             <div className="relative rounded-lg overflow-hidden">
               <div className="aspect-[4/5] relative">
                 <Image
-                  src="/kenya-map-contact.png"
+                  src="/kenya-savanna-golden-hour.png"
                   alt="Artistic map showing Nairobi, Kenya"
                   fill
                   className="object-cover"

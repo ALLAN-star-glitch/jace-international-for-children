@@ -188,7 +188,7 @@ export const CORE_VALUES = [
     imageAlt: 'Children playing and learning in nature'
   },
   {
-    name: 'Research & Innovation',
+    name: 'Research and Innovation',
     description: 'Evidence-based approaches to family care. We continuously learn, adapt, and innovate to improve outcomes for children.',
     shortDescription: 'Evidence-based approaches',
     icon: 'lightbulb',

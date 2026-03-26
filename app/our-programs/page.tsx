@@ -60,7 +60,7 @@ export default function ProgramsPage() {
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/programs-hero.png"
+            src="/about-stat-children.png"
             alt="Children participating in JACE programs in Kenya"
             fill
             className="object-cover"

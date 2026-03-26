@@ -47,7 +47,7 @@ export default function GetInvolvedPage() {
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/get-involved-hero.png"
+            src="/about-hero-team.png"
             alt="Community members working together in Kenya"
             fill
             className="object-cover"
@@ -127,7 +127,7 @@ export default function GetInvolvedPage() {
             <div className="relative rounded-lg overflow-hidden">
               <div className="aspect-[4/5] relative">
                 <Image
-                  src="/donate-family.png"
+                  src="/about-stat-families.png"
                   alt="Family receiving support, smiling with hope"
                   fill
                   className="object-cover"
@@ -147,7 +147,7 @@ export default function GetInvolvedPage() {
             <div className="relative rounded-lg overflow-hidden order-1 md:order-1">
               <div className="aspect-[4/5] relative">
                 <Image
-                  src="/partner-collaboration.png"
+                  src="/about-journey-founders.png"
                   alt="Organizational collaboration meeting"
                   fill
                   className="object-cover"
@@ -247,7 +247,7 @@ export default function GetInvolvedPage() {
             <div className="relative rounded-lg overflow-hidden">
               <div className="aspect-[4/5] relative">
                 <Image
-                  src="/volunteers-working.png"
+                  src="/value-family-preservation.png"
                   alt="Volunteers engaged in meaningful work"
                   fill
                   className="object-cover"

@@ -256,7 +256,7 @@ export default function AboutPage() {
             <div className="text-center group">
               <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
                 <Image
-                  src="/about-stat-counties.png"
+                  src="/kenya-map-golden-hour.png"
                   alt="Kenyan landscape"
                   fill
                   className="object-cover"
@@ -273,7 +273,7 @@ export default function AboutPage() {
             <div className="text-center group">
               <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
                 <Image
-                  src="/about-stat-partners.png"
+                  src="/about-journey-founders.png"
                   alt="Community gathering"
                   fill
                   className="object-cover"
@@ -294,7 +294,7 @@ export default function AboutPage() {
         {/* Subtle Background Image with Overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/about-commitment-bg.png"
+            src="/about-stats-families.png"
             alt="Kenyan family at golden hour"
             fill
             className="object-cover opacity-20"
