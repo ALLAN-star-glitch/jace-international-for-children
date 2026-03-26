@@ -108,7 +108,7 @@ export default function Header() {
                 className="flex items-center gap-2 hover:text-vibrant-pink transition-colors"
               >
                 <FaPhone className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>+254 123 456 789</span>
+                <span>+254743043207</span>
               </a>
               <a 
                 href="mailto:info@jacechildren.org" 

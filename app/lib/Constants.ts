@@ -201,7 +201,7 @@ export const CORE_VALUES = [
 export const CONTACT_INFO = {
   address: 'Nairobi, Kenya',
   fullAddress: 'Nairobi, Kenya (Headquarters)',
-  phone: '+254 700 000000',
+  phone: '+254743043207',
   email: 'info@jacechildren.org',
   hours: 'Monday-Friday, 8:00 AM - 5:00 PM EAT',
 } as const;

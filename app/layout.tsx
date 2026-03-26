@@ -48,14 +48,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   // Base metadata
   title: {
-    default: "JACE for Children International | Family-Based Care for Children in Kenya",
-    template: "%s | JACE for Children International"
+    default: "JACE Children International for Children | Family-Based Care for Children in Kenya",
+    template: "%s | JACE International for Children"
   },
   description: "We strengthen families and communities across Kenya to ensure every child is safe, loved, and supported to reach their full potential. Join us in building sustainable, family-centered care.",
   
   // Open Graph for social sharing
   openGraph: {
-    title: "JACE for Children International",
+    title: "JACE International for Children",
     description: "Building sustainable, family-centered care for children across Kenya",
     url: "https://jace-international-for-children.vercel.app/",
     siteName: "JACE for Children International",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
         url: "https://jace-international-for-children.vercel.app/_next/image?url=%2Fsocial-worker-family.png&w=1920&q=75",
         width: 1200,
         height: 630,
-        alt: "JACE for Children International - Every child belongs in a family",
+        alt: "JACE International for Children - Every child belongs in a family",
       },
     ],
     locale: "en_US",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
   // Twitter card
   twitter: {
     card: "summary_large_image",
-    title: "JACE for Children International",
+    title: "JACE International for Children",
     description: "Building sustainable, family-centered care for children across Kenya",
     images: ["https://jace-international-for-children.vercel.app/_next/image?url=%2Fsocial-worker-family.png&w=1920&q=75"],
     creator: "@jacechildren",
