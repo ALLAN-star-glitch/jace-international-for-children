@@ -74,7 +74,7 @@ export default function Footer() {
                 <Link href="/">JACE International for Children</Link>
               </h3>
               <p className="text-white/80 italic">
-                Every child belongs in a family.
+                  Transforming Child Protection through Family & Community-Based Care
               </p>
               <div className="flex space-x-4">
                 {SOCIAL_LINKS.map((social) => (
