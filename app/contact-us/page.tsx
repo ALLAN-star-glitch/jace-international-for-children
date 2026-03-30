@@ -30,7 +30,7 @@ export default function ContactPage() {
     {
       title: 'Visit Us',
       details: CONTACT_INFO.address,
-      description: 'Township Along Garissa Rd Ananas Mall, Kiambu, 01000, KE',
+      description: 'Headquarters location - by appointment only',
       icon: '📍',
       action: '#'
     }
