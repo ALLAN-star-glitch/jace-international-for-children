@@ -2,7 +2,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Redis } from '@upstash/redis';
 
-// Initialize Redis with your environment variables
 const redis = Redis.fromEnv();
 
 export async function POST(request: NextRequest) {
@@ -10,30 +9,32 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { enabled } = body;
     
-    if (typeof enabled !== 'boolean') {
-      return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
-    }
+    // Store as boolean, not string
+    await redis.set('maintenanceMode', enabled === true);
     
-    // Save to Redis
-    await redis.set('maintenanceMode', enabled);
+    // Verify what was stored
+    const verify = await redis.get('maintenanceMode');
+    console.log('Stored:', enabled, 'Verified:', verify);
     
     return NextResponse.json({ 
       success: true, 
       maintenanceMode: enabled,
-      message: `Maintenance mode ${enabled ? 'ENABLED' : 'DISABLED'} successfully!`
+      verified: verify
     });
     
   } catch (error) {
-    console.error('Error toggling maintenance mode:', error);
+    console.error('Error:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 export async function GET() {
   try {
-    const maintenanceMode = await redis.get('maintenanceMode');
-    return NextResponse.json({ maintenanceMode: maintenanceMode === true });
+    const value = await redis.get('maintenanceMode');
+    const isEnabled = value === true || value === 'true';
+    return NextResponse.json({ maintenanceMode: isEnabled });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return NextResponse.json({ maintenanceMode: false });
   }
-}
+} 

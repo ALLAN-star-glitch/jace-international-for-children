@@ -7,15 +7,13 @@ const redis = Redis.fromEnv();
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // Get maintenance mode from Redis
   let isMaintenanceMode = false;
   try {
     const value = await redis.get('maintenanceMode');
-    isMaintenanceMode = value === true;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // Handle both boolean and string values
+    isMaintenanceMode = value === true || value === 'true';
   } catch (error) {
-    // Fallback to environment variable if Redis fails
-    isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+    console.error('Redis error:', error);
   }
   
   const secretAdminPath = '/secure-maintenance-xyz789';

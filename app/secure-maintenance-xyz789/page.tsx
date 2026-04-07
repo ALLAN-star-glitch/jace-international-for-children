@@ -14,19 +14,27 @@ export default function HiddenMaintenancePage() {
     fetchMaintenanceStatus();
   }, []);
 
-  const fetchMaintenanceStatus = async () => {
-    try {
-      const res = await fetch('/api/maintenance-status');
-      const data = await res.json();
-      setIsMaintenanceMode(data.maintenanceMode);
-    } catch (error) {
-      console.error('Failed to fetch status:', error);
-    }
-  };
+
+const fetchMaintenanceStatus = async () => {
+  try {
+    const res = await fetch('/api/maintenance-status');
+    const data = await res.json();
+    console.log('RAW DATA:', data); // Add this
+    console.log('maintenanceMode value:', data.maintenanceMode); // Add this
+    console.log('Type of maintenanceMode:', typeof data.maintenanceMode); // Add this
+    setIsMaintenanceMode(data.maintenanceMode === true);
+    console.log('Setting isMaintenanceMode to:', data.maintenanceMode === true); // Add this
+  } catch (error) {
+    console.error('Failed to fetch status:', error);
+  }
+};
 
   const toggleMaintenance = async () => {
     setIsLoading(true);
     setMessage(null);
+    
+    const newMode = !isMaintenanceMode;
+    console.log('Toggling to:', newMode); // Debug log
     
     try {
       const res = await fetch('/api/toggle-maintenance', {
@@ -34,27 +42,32 @@ export default function HiddenMaintenancePage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ enabled: !isMaintenanceMode }),
+        body: JSON.stringify({ enabled: newMode }),
       });
       
       const data = await res.json();
+      console.log('Toggle response:', data); // Debug log
       
       if (res.ok) {
-        setIsMaintenanceMode(data.maintenanceMode);
+        setIsMaintenanceMode(newMode);
         setMessage({
           type: 'success',
-          text: `Maintenance mode ${data.maintenanceMode ? 'ENABLED' : 'DISABLED'} successfully!`,
+          text: `Maintenance mode ${newMode ? 'ENABLED' : 'DISABLED'} successfully!`,
         });
         
-        if (!data.maintenanceMode) {
+        if (!newMode) {
           setTimeout(() => {
             router.push('/');
           }, 2000);
+        } else {
+          // Refresh to show maintenance page
+          window.location.href = '/';
         }
       } else {
         setMessage({ type: 'error', text: data.error || 'Failed to toggle maintenance mode' });
       }
     } catch (error) {
+      console.error('Network error:', error);
       setMessage({ type: 'error', text: 'Network error. Please try again.' });
     } finally {
       setIsLoading(false);
@@ -112,6 +125,11 @@ export default function HiddenMaintenancePage() {
                 `}
               />
             </button>
+          </div>
+
+          {/* Debug info - remove after fixing */}
+          <div className="mt-4 p-2 bg-gray-100 rounded text-xs">
+            Debug: isMaintenanceMode = {String(isMaintenanceMode)}
           </div>
 
           {isMaintenanceMode && (
