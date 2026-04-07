@@ -1,35 +1,38 @@
 // middleware.ts
 import { NextRequest, NextResponse } from 'next/server';
+import { Redis } from '@upstash/redis';
 
-export function middleware(request: NextRequest) {
+const redis = Redis.fromEnv();
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
-  // Check maintenance mode from environment
-  const isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+  // Get maintenance mode from Redis
+  let isMaintenanceMode = false;
+  try {
+    const value = await redis.get('maintenanceMode');
+    isMaintenanceMode = value === true;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    // Fallback to environment variable if Redis fails
+    isMaintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+  }
   
-  // Your secret admin path - change this to match your folder name
   const secretAdminPath = '/secure-maintenance-xyz789';
   
-  // Always allow your secret admin page and API routes
-  const isAdminPath = 
+  const isAllowedPath = 
     pathname === secretAdminPath ||
-    pathname.startsWith('/api/toggle-maintenance') ||
-    pathname.startsWith('/api/maintenance-status');
-  
-  // Always allow static assets and maintenance page itself
-  const isExcludedPath = 
     pathname === '/maintenance' ||
+    pathname.startsWith('/api/') ||
     pathname.startsWith('/_next') ||
     pathname === '/favicon.ico' ||
     pathname.includes('.');
   
-  // Redirect to maintenance page if mode is ON and not an excluded path
-  if (isMaintenanceMode && !isExcludedPath && !isAdminPath) {
+  if (isMaintenanceMode && !isAllowedPath) {
     const maintenanceUrl = new URL('/maintenance', request.url);
     return NextResponse.redirect(maintenanceUrl);
   }
   
-  // Redirect from maintenance to home if mode is OFF
   if (!isMaintenanceMode && pathname === '/maintenance') {
     const homeUrl = new URL('/', request.url);
     return NextResponse.redirect(homeUrl);
